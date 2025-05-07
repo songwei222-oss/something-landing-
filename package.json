@@ -10,7 +10,6 @@
   "main": "lib/anime.umd.js",
   "module": "lib/anime.esm.js",
   "types": "types/index.d.ts",
-  "type": "module",
   "exports": {
     ".": {
       "types": "./types/index.d.ts",
@@ -41,19 +40,20 @@
   ],
   "devDependencies": {
     "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.6",
     "browser-sync": "^2.29.3",
     "chai": "^4.3.10",
     "mocha": "^10.2.0",
     "rollup": "^4.9.1",
     "rollup-plugin-filesize": "^10.0.0",
-    "rollup-plugin-ts": "^3.4.5",
+    "rollup-plugin-dts": "^6.1.0",
     "three": "^0.160.0",
     "typescript": "5.1.6"
   },
   "scripts": {
     "dev": "rollup -c -w",
     "dev-types": "types=true rollup -c -w",
-    "build": "build=true types=true rollup -c",
+    "build": "rollup -c",
     "release": "build=true release=true types=true rollup -c",
     "open-examples": "browser-sync start --startPath examples --server --no-notify --directory --files '**/*.js'",
     "test-browser": "browser-sync start --startPath tests/index.html --server --files '**/*.js' --no-notify --directory",
