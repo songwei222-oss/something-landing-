@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime.js Demo</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .demo-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .box {
+            width: 50px;
+            height: 50px;
+            background: #ff5252;
+            margin: 20px auto;
+            border-radius: 4px;
+        }
+        .circle {
+            width: 50px;
+            height: 50px;
+            background: #4CAF50;
+            margin: 20px auto;
+            border-radius: 50%;
+        }
+        h1 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1>Anime.js Demo</h1>
+        <div class="box"></div>
+        <div class="circle"></div>
+    </div>
+    <script type="module">
+        import anime from './lib/anime.esm.js';
+
+        // 方块动画
+        anime({
+            targets: '.box',
+            translateX: 250,
+            rotate: '1turn',
+            backgroundColor: '#FFC0CB',
+            duration: 2000,
+            loop: true,
+            direction: 'alternate',
+            easing: 'easeInOutQuad'
+        });
+
+        // 圆形动画
+        anime({
+            targets: '.circle',
+            translateY: -100,
+            scale: 2,
+            duration: 1500,
+            loop: true,
+            direction: 'alternate',
+            easing: 'easeInOutSine'
+        });
+    </script>
+</body>
+</html> 

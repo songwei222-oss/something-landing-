@@ -3,16 +3,21 @@
   "builds": [
     {
       "src": "package.json",
-      "use": "@vercel/node",
+      "use": "@vercel/static-build",
       "config": {
-        "buildCommand": "npm run build"
+        "buildCommand": "npm run build",
+        "outputDirectory": "."
       }
     }
   ],
   "routes": [
     {
+      "src": "/lib/(.*)",
+      "dest": "/lib/$1"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/"
+      "dest": "/index.html"
     }
   ]
 } 
