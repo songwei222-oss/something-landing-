@@ -2,14 +2,17 @@ import terser from '@rollup/plugin-terser';
 import filesize from 'rollup-plugin-filesize';
 import typescript from '@rollup/plugin-typescript';
 import dts from 'rollup-plugin-dts';
-import pkg from './package.json' assert { type: 'json' };
-import fs from 'fs';
-import path from 'path';
+import { readFileSync } from 'fs';
+import { resolve } from 'path';
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
+const pkg = require('./package.json');
 
 const inputPath = 'src/anime.js';
 // const inputPathGUI = 'src/gui/gui.js';
 const outputName = 'anime';
-const jsDocTypes = fs.readFileSync('./src/types.js', 'utf-8').split('/* Exports */')[1];
+const jsDocTypes = readFileSync('./src/types.js', 'utf-8').split('/* Exports */')[1];
 
 /**
  * @param {String} format
@@ -81,7 +84,7 @@ const cleanup = {
   name: 'cleanup',
   generateBundle(_, bundle) {
     if (process.env.release) {
-      const guiPath = path.resolve('./lib/gui');
+      const guiPath = resolve('./lib/gui');
       if (fs.existsSync(guiPath)) {
         fs.rmSync(guiPath, { recursive: true, force: true });
         console.log('Removed GUI folder from lib directory in release mode');
